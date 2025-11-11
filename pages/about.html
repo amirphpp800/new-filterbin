@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درباره ما - فیلتربین</title>
+    <meta name="description" content="درباره فیلتربین و ماموریت ما">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/logo.svg">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../assets/Font/fontiran.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-root"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>درباره فیلتربین</h1>
+            <p>پلتفرمی برای به اشتراک‌گذاری دانش و ابزارهای کاربردی</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-box">
+                <h2>درباره ما</h2>
+                <p>فیلتربین یک پلتفرم منتقد و تحلیلگر است که با هدف ارائه دیدگاه‌ها و نظرات تخصصی در حوزه‌های مختلف فعالیت می‌کند. ما صرفاً نظر می‌دهیم و هیچ‌گونه فعالیتی خلاف قوانین انجام نمی‌دهیم.</p>
+            </div>
+
+            <div class="content-box">
+                <h2>رویکرد ما</h2>
+                <p>ما معتقدیم که انتقاد سازنده و ارائه نظرات کارشناسی می‌تواند به بهبود وضعیت موجود کمک کند. تمام محتوای ما بر اساس تحقیق، تحلیل و نقد سازنده تولید می‌شود و هدف ما ارائه دیدگاه‌های مستقل و بی‌طرفانه است.</p>
+            </div>
+
+            <div class="content-box">
+                <h2>منابع محتوا</h2>
+                <p>محتوای فیلتربین از منابع معتبر مختلف جمع‌آوری و گردآوری می‌شود. منبع اصلی ما <strong>فیلتربان</strong> است که اطلاعات و محتوای ارزشمندی در اختیار ما قرار می‌دهد. ما با احترام به حقوق مالکیت معنوی، تمامی منابع را ذکر کرده و تلاش می‌کنیم تا محتوای با کیفیت و مفید را در اختیار کاربران قرار دهیم.</p>
+            </div>
+
+            <div class="content-box">
+                <h2>اصول ما</h2>
+                <ul>
+                    <li><strong>انتقاد سازنده:</strong> ارائه نظرات تخصصی و کارشناسی</li>
+                    <li><strong>قانون‌مداری:</strong> رعایت کامل قوانین و مقررات</li>
+                    <li><strong>شفافیت:</strong> ارائه اطلاعات صادقانه و شفاف</li>
+                    <li><strong>استقلال:</strong> حفظ بی‌طرفی و استقلال در نظردهی</li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <h2>تماس با ما</h2>
+                <p>برای ارتباط با ما، ارسال نظرات یا پیشنهادات خود می‌توانید از طریق ایمیل زیر با ما در تماس باشید:</p>
+                <p style="margin-top: 1.5rem; padding: 1rem; background: var(--dark-bg); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                    <strong>ایمیل:</strong> filterbinn@proton.me
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-root"></div>
+    
+    <!-- Component Scripts -->
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script>
+        // Mount components
+        const headerComponent = new HeaderComponent();
+        headerComponent.mount('#header-root');
+        
+        const footerComponent = new FooterComponent();
+        footerComponent.mount('#footer-root');
+    </script>
+</body>
+</html>

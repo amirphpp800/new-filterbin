@@ -1,0 +1,636 @@
+/* ============================================
+   ARTICLE PAGE STYLES
+   Based on modern article design
+   ============================================ */
+
+/* Variables */
+:root {
+    --article-bg: #020203;
+    --article-card-bg: #161617;
+    --article-border: rgba(255, 255, 255, 0.1);
+    --article-text: #ffffff;
+    --article-text-secondary: rgba(255, 255, 255, 0.7);
+    --article-accent: #22c55e;
+    --article-accent-hover: #16a34a;
+    --article-orange: #ff6b35;
+    --article-orange-hover: #ff5722;
+    --article-red: #E02F3A;
+    --article-red-hover: #c00b17;
+}
+
+/* Body */
+body.article-template {
+    background: var(--article-bg);
+    color: var(--article-text);
+    font-family: 'IRANSansDN', 'IRANSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+/* Hero Header - Hidden, image will be in card */
+.article-hero {
+    display: none;
+}
+
+/* Container */
+.article-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Main Content */
+.article-main-content {
+    order: 2;
+}
+
+/* Article Meta */
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--article-border);
+    flex-wrap: wrap;
+}
+
+.article-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--article-text-secondary);
+    font-size: 0.9rem;
+}
+
+.article-meta-item svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
+.article-meta-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--article-border);
+}
+
+.article-body-card {
+    background: var(--article-card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--article-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Article Cover Image */
+.article-cover-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Article Header Inside Card */
+.article-header {
+    padding: 2rem 2.5rem 0;
+}
+
+.article-category-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #c00b17 0%, #9D0913 100%);
+    color: #ffffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(192, 11, 23, 0.4);
+    transition: all 0.3s ease;
+}
+
+.article-category-badge:hover {
+    box-shadow: 0 6px 16px rgba(192, 11, 23, 0.6);
+    transform: translateY(-2px);
+}
+
+.article-main-title {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--article-text);
+    margin: 0 0 1.5rem 0;
+}
+
+/* Article Body Content */
+.article-body-content {
+    padding: 0 2.5rem 2.5rem;
+}
+
+/* Share Buttons Inside Content */
+.article-share-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--article-border);
+}
+
+.article-share-section h4 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--article-text-secondary);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.article-share-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.article-lede {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--article-text-secondary);
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 107, 53, 0.05);
+    border-right: 4px solid var(--article-orange);
+    border-radius: 8px;
+}
+
+/* Article Content Typography */
+.article-body-content h2 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+    color: var(--article-text);
+    padding-top: 1rem;
+}
+
+.article-body-content h3 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: var(--article-text);
+}
+
+.article-body-content p {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    margin-bottom: 1.5rem;
+    color: var(--article-text-secondary);
+    font-size: 1.05rem;
+}
+
+.article-body-content ul,
+.article-body-content ol {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    margin: 1.5rem 0;
+    padding-right: 2rem;
+}
+
+.article-body-content li {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    margin-bottom: 0.8rem;
+    color: var(--article-text-secondary);
+    line-height: 1.8;
+}
+
+.article-body-content blockquote {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    border-right: 4px solid var(--article-accent);
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 12px;
+    font-style: italic;
+    color: var(--article-text);
+}
+
+.article-body-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+.article-body-content a {
+    color: var(--article-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.article-body-content a:hover {
+    border-bottom-color: var(--article-accent);
+}
+
+/* Article Tags */
+.article-tags {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--article-border);
+}
+
+.article-tags h3 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--article-text-secondary);
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tag {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    display: inline-block;
+    padding: 0;
+    margin-left: 1rem;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.tag:hover {
+    color: var(--article-red);
+    text-decoration: none;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.article-sidebar-left {
+    order: 1;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.article-sidebar-left::-webkit-scrollbar {
+    width: 6px;
+}
+
+.article-sidebar-left::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.article-sidebar-left::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.article-sidebar-left::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-card {
+    background: var(--article-card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--article-border);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.5rem;
+}
+
+.combined-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Share Section */
+.share-section {
+    padding: 2rem;
+}
+
+.sidebar-card h4 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--article-text);
+}
+
+.share-section h4 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--article-text);
+}
+
+.share-buttons,
+.article-share-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--article-border);
+    color: var(--article-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.share-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.share-btn.linkedin:hover {
+    background: rgba(10, 102, 194, 0.2);
+    border-color: #0a66c2;
+    color: #0a66c2;
+}
+
+.share-btn.whatsapp:hover {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.share-btn.telegram:hover {
+    background: rgba(42, 171, 238, 0.2);
+    border-color: #2aabee;
+    color: #2aabee;
+}
+
+.share-btn.twitter:hover {
+    background: rgba(29, 155, 240, 0.2);
+    border-color: #1d9bf0;
+    color: #1d9bf0;
+}
+
+.share-btn.copy:hover {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: var(--article-accent);
+    color: var(--article-accent);
+}
+
+/* Sidebar Divider */
+.sidebar-divider {
+    height: 1px;
+    background: var(--article-border);
+    margin: 0 1rem;
+}
+
+/* Table of Contents Section */
+.toc-section {
+    padding: 1.5rem;
+    background: var(--article-card-bg);
+    border: 1px solid var(--article-border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.toc-section h4 {
+    font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--article-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toc-section h4 svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--article-orange);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    color: var(--article-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+}
+
+.toc-link:hover {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--article-text);
+    border-right-color: var(--article-orange);
+}
+
+.toc-link.active {
+    background: rgba(255, 107, 53, 0.15);
+    color: var(--article-orange);
+    border-right-color: var(--article-orange);
+}
+
+.toc-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--article-text-secondary);
+}
+
+.toc-link.active .toc-number {
+    background: var(--article-orange);
+    color: #000;
+}
+
+.toc-text {
+    flex: 1;
+}
+
+/* Related Articles Section */
+.related-section {
+    padding: 2rem;
+}
+
+.related-section h4 {
+    font-family: 'AbarMidFaNum', 'IRANSans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--article-text);
+}
+
+.related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.related-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.related-item:hover {
+    background: transparent;
+}
+
+.related-item-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--article-text-secondary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.related-item-content {
+    flex: 1;
+}
+
+.related-item-title {
+    font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    color: var(--article-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.related-item:hover .related-item-title {
+    color: var(--article-red);
+}
+
+.related-item:hover .related-item-number {
+    background: var(--article-red);
+    color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .article-content-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .article-sidebar-left {
+        position: static;
+        order: 3;
+    }
+    
+    .article-hero-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-content-container {
+        padding: 1rem;
+    }
+    
+    .article-body-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .article-body-title {
+        font-size: 1.8rem;
+    }
+    
+    .article-lede {
+        font-size: 1rem;
+    }
+    
+    .share-buttons {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .article-body-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .article-body-content h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-body-title {
+        font-size: 1.5rem;
+    }
+    
+    .article-body-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .article-lede {
+        font-size: 0.95rem;
+    }
+    
+    .article-body-content p {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فیلتربین - پلتفرم ابزارهای دیجیتال</title>
+    <meta name="description" content="فیلتربین - مرجع کامل ابزارهای دیجیتال، امنیت سایبری و مقالات تخصصی">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/logo/logo.svg">
+    <link rel="apple-touch-icon" href="assets/logo/icon-192x192.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/config/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#22c55e">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="فیلتربین - پلتفرم ابزارهای دیجیتال">
+    <meta property="og:description" content="مرجع کامل ابزارهای دیجیتال، امنیت سایبری و مقالات تخصصی">
+    <meta property="og:image" content="https://filterbin.space/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://filterbin.space">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fa_IR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="فیلتربین">
+    <meta name="twitter:description" content="مرجع کامل ابزارهای دیجیتال و امنیت سایبری">
+    <meta name="twitter:image" content="https://filterbin.space/assets/images/twitter-card.jpg">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/Font/fontiran.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-root"></div>
+
+    <!-- Hero Component -->
+    <div id="hero-root"></div>
+
+    <!-- Footer Component -->
+    <div id="footer-root"></div>
+
+    <!-- Component Scripts -->
+    <script src="js/components/header.js"></script>
+    <script src="js/components/hero.js"></script>
+    <script src="js/components/articles-list.js"></script>
+    <script src="js/components/footer.js"></script>
+    
+    <!-- Main App Script -->
+    <script src="js/app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/config/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

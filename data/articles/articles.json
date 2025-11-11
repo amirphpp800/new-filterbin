@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "lastUpdate": "۱۶ آبان ۱۴۰۴",
+  "description": "فایل پیکربندی مقالات - استفاده از این فایل اختیاری است. سیستم خودکار مقالات را پیدا می‌کند.",
+  "articles": [
+    {
+      "id": "5",
+      "file": "article-5.html",
+      "title": "اجرای گام به گام مصوبه‌ای که انتشار عمومی نیافت",
+      "category": "شبکه و سیاستگذاری",
+      "featured": true,
+      "active": true
+    },
+    {
+      "id": "4",
+      "file": "article-4.html",
+      "title": "اختلالات اینترنت در ماه سپتامبر",
+      "category": "شبکه و سیاستگذاری",
+      "featured": false,
+      "active": true
+    },
+    {
+      "id": "3",
+      "file": "article-3.html",
+      "title": "از اینترنت تا پیامک؛ گسترش سانسور",
+      "category": "سانسور",
+      "featured": false,
+      "active": true
+    },
+    {
+      "id": "2",
+      "file": "article-2.html",
+      "title": "اختلالات گسترده در اینترنت ایران",
+      "category": "امنیت",
+      "featured": true,
+      "active": true
+    },
+    {
+      "id": "1",
+      "file": "article-1.html",
+      "title": "کنترل به جای نوآوری؛ روایت توسعه نامتوازن هوش مصنوعی",
+      "category": "تکنولوژی",
+      "featured": true,
+      "active": true
+    }
+  ],
+  "categories": [
+    "تکنولوژی",
+    "امنیت",
+    "سانسور",
+    "شبکه و سیاستگذاری",
+    "حریم خصوصی",
+    "ابزار دیجیتال"
+  ],
+  "instructions": {
+    "fa": {
+      "title": "راهنمای استفاده",
+      "description": "این فایل JSON اختیاری است و برای مدیریت دستی مقالات استفاده می‌شود.",
+      "autoDiscovery": "اگر این فایل وجود نداشته باشد، سیستم خودکار تا 50 فایل مقاله را جستجو می‌کند.",
+      "addNewArticle": "برای افزودن مقاله جدید: یک فایل article-N.html بسازید و آن را به لیست articles اضافه کنید.",
+      "disableArticle": "برای غیرفعال کردن مقاله: مقدار active را false قرار دهید.",
+      "reorder": "ترتیب مقالات در لیست، ترتیب نمایش را تعیین نمی‌کند. مقالات بر اساس ID مرتب می‌شوند."
+    },
+    "en": {
+      "title": "Usage Guide",
+      "description": "This JSON file is optional and used for manual article management.",
+      "autoDiscovery": "If this file doesn't exist, the system will automatically search for up to 50 article files.",
+      "addNewArticle": "To add a new article: Create an article-N.html file and add it to the articles list.",
+      "disableArticle": "To disable an article: Set the active value to false.",
+      "reorder": "The order of articles in the list doesn't determine the display order. Articles are sorted by ID."
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>یادداشت‌ها - فیلتربین</title>
+    <meta name="description" content="یادداشت‌ها و مقالات تخصصی فیلتربین در حوزه امنیت دیجیتال، فناوری و اینترنت آزاد">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/logo.svg">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../assets/Font/fontiran.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-root"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>یادداشت‌ها</h1>
+            <p>مقالات و تحلیل‌های تخصصی در حوزه امنیت دیجیتال، فناوری و اینترنت آزاد</p>
+        </div>
+    </section>
+
+    <!-- Articles List Component -->
+    <div id="articles-root"></div>
+
+    <!-- Footer Component -->
+    <div id="footer-root"></div>
+    
+    <!-- Component Scripts -->
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/articles-list.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script>
+        // Mount components
+        const headerComponent = new HeaderComponent();
+        headerComponent.mount('#header-root');
+        
+        const articlesComponent = new ArticlesListComponent();
+        articlesComponent.mount('#articles-root');
+        
+        const footerComponent = new FooterComponent();
+        footerComponent.mount('#footer-root');
+    </script>
+</body>
+</html>
