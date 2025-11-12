@@ -1,0 +1,104 @@
+
+[build]
+  publish = "."
+  command = "echo 'Static site - no build needed'"
+
+# Clean URL Redirects for main pages
+[[redirects]]
+  from = "/about"
+  to = "/pages/about.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/articles"
+  to = "/pages/articles.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/bpb-guide"
+  to = "/pages/bpb-guide.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/iran-off"
+  to = "/pages/iran-off.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/internet-toolkit"
+  to = "/pages/internet-disruption-toolkit.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/messaging-toolkit"
+  to = "/pages/messaging-toolkit.html"
+  status = 200
+  force = false
+
+# Pages directory access
+[[redirects]]
+  from = "/pages/*"
+  to = "/pages/:splat"
+  status = 200
+  force = false
+
+# Fallback to index
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-XSS-Protection = "1; mode=block"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache Control for Static Assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Proper MIME types
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "/config/sw-netlify.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Service-Worker-Allowed = "/"
+
+# HTML files - no cache
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

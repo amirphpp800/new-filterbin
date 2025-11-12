@@ -36,8 +36,8 @@ class FooterComponent {
                 email: 'filterbinn@proton.me',
                 social: [
                     { name: 'X', url: 'javascript:void(0);', icon: 'x', tooltip: 'به زودی' },
-                    { name: 'Telegram', url: 'javascript:void(0);', icon: 'telegram', tooltip: 'به زودی' },
-                    { name: 'GitHub', url: 'javascript:void(0);', icon: 'github', tooltip: 'به زودی' },
+                    { name: 'Telegram', url: 'https://t.me/Filterbin', icon: 'telegram' },
+                    { name: 'GitHub', url: 'https://github.com/filterbin', icon: 'github' },
                     { name: 'YouTube', url: 'javascript:void(0);', icon: 'youtube', tooltip: 'به زودی' }
                 ]
             },

@@ -1,0 +1,40 @@
+# Netlify Headers File
+# این فایل headers اضافی را تنظیم می‌کند
+# توجه: این فایل مکمل netlify.toml است
+
+# Security Headers برای همه صفحات
+# توجه: Headers اصلی در netlify.toml تنظیم شده‌اند
+# این فایل فقط برای headers اضافی استفاده می‌شود
+
+# Service Worker
+/config/sw.js
+  Service-Worker-Allowed: /
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
+
+# Manifest
+/config/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+# Fonts
+/assets/Font/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Images
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS Files
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript Files
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static Assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *

@@ -1,0 +1,14 @@
+
+# Clean URL Redirects
+/about  /pages/about.html  200
+/articles  /pages/articles.html  200
+/bpb-guide  /pages/bpb-guide.html  200
+/iran-off  /pages/iran-off.html  200
+/internet-toolkit  /pages/internet-disruption-toolkit.html  200
+/messaging-toolkit  /pages/messaging-toolkit.html  200
+
+# Pages directory
+/pages/*  /pages/:splat  200
+
+# Fallback
+/*  /index.html  200

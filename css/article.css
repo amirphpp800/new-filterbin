@@ -48,86 +48,90 @@ body.article-template {
 .article-meta {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--article-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     flex-wrap: wrap;
 }
 
 .article-meta-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--article-text-secondary);
-    font-size: 0.9rem;
+    gap: 0.6rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.88rem;
+    font-weight: 500;
 }
 
 .article-meta-item svg {
     width: 18px;
     height: 18px;
-    opacity: 0.7;
+    opacity: 0.5;
+    stroke-width: 1.8;
 }
 
 .article-meta-divider {
     width: 1px;
-    height: 20px;
-    background: var(--article-border);
+    height: 18px;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .article-body-card {
-    background: var(--article-card-bg);
+    background: rgba(16, 16, 17, 0.95);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--article-border);
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Article Cover Image */
 .article-cover-image {
     width: 100%;
-    height: 350px;
+    height: 400px;
     object-fit: cover;
     display: block;
+    border-radius: 0;
 }
 
 /* Article Header Inside Card */
 .article-header {
-    padding: 2rem 2.5rem 0;
+    padding: 2.5rem 2.5rem 1.5rem;
+    background: var(--article-card-bg);
 }
 
 .article-category-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #c00b17 0%, #9D0913 100%);
-    color: #ffffff;
-    padding: 0.5rem 1.2rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: 0.3px;
-    box-shadow: 0 4px 12px rgba(192, 11, 23, 0.4);
+    background: rgba(224, 47, 58, 0.15);
+    color: var(--article-red);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(224, 47, 58, 0.3);
     transition: all 0.3s ease;
 }
 
 .article-category-badge:hover {
-    box-shadow: 0 6px 16px rgba(192, 11, 23, 0.6);
-    transform: translateY(-2px);
+    background: rgba(224, 47, 58, 0.25);
+    border-color: rgba(224, 47, 58, 0.5);
 }
 
 .article-main-title {
     font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    line-height: 1.3;
+    line-height: 1.4;
     color: var(--article-text);
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 2rem 0;
 }
 
 /* Article Body Content */
 .article-body-content {
-    padding: 0 2.5rem 2.5rem;
+    padding: 2.5rem 2.5rem 2.5rem;
 }
 
 /* Share Buttons Inside Content */
@@ -306,12 +310,12 @@ body.article-template {
 }
 
 .sidebar-card {
-    background: var(--article-card-bg);
+    background: rgba(20, 20, 20, 0.8);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--article-border);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.8rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     margin-bottom: 1.5rem;
 }
 
@@ -409,28 +413,29 @@ body.article-template {
 
 /* Table of Contents Section */
 .toc-section {
-    padding: 1.5rem;
-    background: var(--article-card-bg);
-    border: 1px solid var(--article-border);
-    border-radius: 12px;
+    padding: 1.8rem;
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
 }
 
 .toc-section h4 {
     font-family: 'AbarMidFaNum', 'Abar', 'IRANSans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--article-text);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .toc-section h4 svg {
     width: 20px;
     height: 20px;
-    stroke: var(--article-orange);
+    stroke: var(--article-red);
 }
 
 .toc-list {
@@ -446,46 +451,48 @@ body.article-template {
 .toc-link {
     display: flex;
     align-items: flex-start;
-    gap: 0.8rem;
-    padding: 0.8rem;
-    border-radius: 8px;
-    color: var(--article-text-secondary);
+    gap: 0.9rem;
+    padding: 0.9rem;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.88rem;
+    line-height: 1.6;
     transition: all 0.3s ease;
     border-right: 3px solid transparent;
 }
 
 .toc-link:hover {
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(224, 47, 58, 0.08);
     color: var(--article-text);
-    border-right-color: var(--article-orange);
+    border-right-color: var(--article-red);
 }
 
 .toc-link.active {
-    background: rgba(255, 107, 53, 0.15);
-    color: var(--article-orange);
-    border-right-color: var(--article-orange);
+    background: rgba(224, 47, 58, 0.12);
+    color: var(--article-red);
+    border-right-color: var(--article-red);
 }
 
 .toc-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 28px;
-    height: 28px;
+    min-width: 30px;
+    height: 30px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.82rem;
     font-weight: 700;
     flex-shrink: 0;
-    color: var(--article-text-secondary);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .toc-link.active .toc-number {
-    background: var(--article-orange);
-    color: #000;
+    background: var(--article-red);
+    color: #ffffff;
+    border-color: var(--article-red);
 }
 
 .toc-text {

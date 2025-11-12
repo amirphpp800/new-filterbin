@@ -84,7 +84,7 @@ class HeaderComponent {
                                         </a>
                                     </div>
                                     
-                                    <a href="${this.basePath}pages/internet-disruption-toolkit.html" class="mega-menu-card mega-card-full mega-card-brown">
+                                    <a href="${this.basePath}pages/internet-toolkit.html" class="mega-menu-card mega-card-full mega-card-brown">
                                         <div class="mega-card-icon">
                                             <svg width="50" height="50" viewBox="0 0 48 48" fill="currentColor">
                                                 <path d="M19.9,27.3l-.2-1.7a15.6,15.6,0,0,0-7.4,4.9,1.9,1.9,0,0,0-.4,1.2,2,2,0,0,0,.4,1.3,2,2,0,0,0,3.1,0,11.2,11.2,0,0,1,5.3-3.5A3.5,3.5,0,0,1,19.9,27.3Z"></path>
@@ -217,6 +217,14 @@ class HeaderComponent {
         const overlay = document.querySelector('.hamburger-overlay');
         const closeBtn = document.querySelector('.hamburger-close');
         
+        const closeMenu = () => {
+            if (hamburgerBtn && overlay) {
+                hamburgerBtn.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+        
         if (hamburgerBtn && overlay) {
             hamburgerBtn.addEventListener('click', () => {
                 hamburgerBtn.classList.toggle('active');
@@ -226,19 +234,22 @@ class HeaderComponent {
             
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
-                    hamburgerBtn.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                    closeMenu();
                 }
             });
             
             if (closeBtn) {
                 closeBtn.addEventListener('click', () => {
-                    hamburgerBtn.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                    closeMenu();
                 });
             }
+            
+            // بستن خودکار منو هنگام بزرگ شدن صفحه
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && overlay.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
         }
         
         // Dropdown menu is now controlled by CSS :hover

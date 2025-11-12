@@ -1,121 +1,47 @@
 {
   "name": "فیلتربین",
-  "short_name": "FilterBin",
-  "description": "پلتفرم ابزارهای دیجیتال و امنیت سایبری",
+  "short_name": "فیلتربین",
+  "description": "راهنمای جامع دور زدن فیلتر اینترنت",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#22c55e",
+  "theme_color": "#E02F3A",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "lang": "fa",
   "dir": "rtl",
+  "lang": "fa",
   "icons": [
     {
-      "src": "/assets/logo/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
+      "src": "/assets/logo/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/logo/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/logo/icon-512x512.png",
+      "src": "/assets/logo/logotype.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "shortcuts": [
-    {
-      "name": "یادداشت‌ها",
-      "short_name": "Articles",
-      "description": "مشاهده یادداشت‌ها و مقالات",
-      "url": "/pages/articles.html",
-      "icons": [
-        {
-          "src": "/assets/icons/articles.png",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "ابزارها",
-      "short_name": "Tools",
-      "description": "دسترسی به ابزارها",
-      "url": "/pages/tools.html",
-      "icons": [
-        {
-          "src": "/assets/icons/tools.png",
-          "sizes": "96x96"
-        }
-      ]
-    }
-  ],
   "categories": [
     "education",
-    "news",
-    "security",
     "utilities"
   ],
-  "screenshots": [
+  "shortcuts": [
     {
-      "src": "/assets/screenshots/home.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "label": "صفحه اصلی"
+      "name": "خانه",
+      "url": "/",
+      "description": "صفحه اصلی"
     },
     {
-      "src": "/assets/screenshots/articles.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "label": "یادداشت‌ها"
+      "name": "یادداشت‌ها",
+      "url": "/pages/articles.html",
+      "description": "مشاهده یادداشت‌ها"
+    },
+    {
+      "name": "راهنمای BPB",
+      "url": "/pages/bpb-guide.html",
+      "description": "راهنمای نصب و استفاده از BPB Panel"
     }
-  ],
-  "related_applications": [],
-  "prefer_related_applications": false,
-  "share_target": {
-    "action": "/share",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  }
+  ]
 }

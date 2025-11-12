@@ -157,6 +157,9 @@
     </style>
 </head>
 <body>
+    <!-- Header Component -->
+    <div id="header-root"></div>
+
     <!-- Main Content -->
     <main class="bpb-guide-page">
         <!-- Mobile Sidebar Toggle -->
@@ -1283,29 +1286,20 @@
                     document.body.classList.toggle('sidebar-open');
                 });
                 
-                // Also add touchstart for better mobile support
-                newMobileSidebarToggle.addEventListener('touchstart', function(e) {
+                // Close sidebar when clicking overlay
+                sidebarOverlay.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    sidebar.classList.toggle('active');
-                    sidebarOverlay.classList.toggle('active');
-                    document.body.classList.toggle('sidebar-open');
-                }, { passive: false });
-                
-                // Close sidebar when clicking overlay
-                sidebarOverlay.addEventListener('click', function() {
                     sidebar.classList.remove('active');
                     sidebarOverlay.classList.remove('active');
                     document.body.classList.remove('sidebar-open');
                 });
                 
-                // Also add touchstart for better mobile support
-                sidebarOverlay.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    sidebar.classList.remove('active');
-                    sidebarOverlay.classList.remove('active');
-                    document.body.classList.remove('sidebar-open');
-                }, { passive: false });
+                // Prevent scroll on sidebar when it's open
+                sidebar.addEventListener('touchmove', function(e) {
+                    e.stopPropagation();
+                }, { passive: true });
+                
             } else {
                 console.error('Sidebar elements not found');
             }
@@ -1360,20 +1354,38 @@
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 
                 if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.pushState(null, null, '#' + targetId);
+                    // بستن سایدبار موبایل در صورت باز بودن
+                    const sidebar = document.querySelector('.bpb-sidebar');
+                    const overlay = document.getElementById('sidebarOverlay');
+                    if (sidebar && sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.classList.remove('sidebar-open');
+                    }
                     
-                    // Update active state immediately
+                    // اسکرول به بخش مورد نظر
                     setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        history.pushState(null, null, '#' + targetId);
+                        
+                        // Update active state
                         navLinks.forEach(l => l.classList.remove('active'));
                         this.classList.add('active');
-                    }, 100);
+                    }, 300);
                 }
             });
+            
+            // اضافه کردن touchstart برای بهبود عملکرد در موبایل
+            link.addEventListener('touchstart', function(e) {
+                // فقط برای جلوگیری از double-tap zoom
+                e.stopPropagation();
+            }, { passive: true });
         });
         
         // Run on scroll with debounce
@@ -1446,8 +1458,13 @@
     <div id="footer-root"></div>
 
     <!-- Component Scripts -->
+    <script src="../js/components/header.js"></script>
     <script src="../js/components/footer.js"></script>
     <script>
+        // Mount header component
+        const headerComponent = new HeaderComponent();
+        headerComponent.mount('#header-root');
+        
         // Mount footer component
         const footerComponent = new FooterComponent();
         footerComponent.mount('#footer-root');
