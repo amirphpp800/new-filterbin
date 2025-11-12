@@ -1,10 +1,11 @@
+
 // Main Application
 class App {
     constructor() {
         this.components = {
             header: null,
             hero: null,
-            articlesList: null,
+            articlesFeatured: null,
             footer: null
         };
     }
@@ -13,18 +14,18 @@ class App {
         // Initialize components
         this.components.header = new HeaderComponent();
         this.components.hero = new HeroComponent();
-        this.components.articlesList = new ArticlesListComponent();
+        this.components.articlesFeatured = new ArticlesFeaturedComponent();
         this.components.footer = new FooterComponent();
 
         // Mount components
         this.components.header.mount('#header-root');
         this.components.hero.mount('#hero-root');
-        await this.components.articlesList.mount('#articles-root');
+        await this.components.articlesFeatured.mount('#articles-root');
         this.components.footer.mount('#footer-root');
 
         // Initialize smooth scroll
         this.initSmoothScroll();
-        
+
         // Initialize lazy loading
         this.initLazyLoading();
     }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -15,6 +16,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/articles-featured.css">
 </head>
 <body>
     <!-- Header Component -->
@@ -36,19 +38,62 @@
     
     <!-- Component Scripts -->
     <script src="../js/components/header.js"></script>
-    <script src="../js/components/articles-list.js"></script>
     <script src="../js/components/footer.js"></script>
     <script>
+        // بارگذاری و نمایش تمام مقالات
+        async function loadAllArticles() {
+            try {
+                const response = await fetch('../data/articles/articles.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load articles');
+                }
+                const data = await response.json();
+                const articles = data.articles || [];
+                
+                console.log(`✅ تعداد ${articles.length} مقاله از JSON بارگذاری شد`);
+                
+                if (articles.length === 0) {
+                    document.getElementById('articles-root').innerHTML = '<p style="color: #888; text-align: center; padding: 4rem;">هیچ مقاله‌ای یافت نشد</p>';
+                    return;
+                }
+                
+                // نمایش تمام مقالات در قالب grid
+                const articlesHTML = `
+                    <section class="articles-list-section">
+                        <div class="container">
+                            <div class="articles-grid">
+                                ${articles.map(article => `
+                                    <a href="../data/articles/${article.file}" class="article-card">
+                                        <div class="article-content">
+                                            <div class="article-meta">
+                                                <span class="article-category">${article.category}</span>
+                                                <span>•</span>
+                                                <span class="article-date">${article.date || 'تاریخ نامشخص'}</span>
+                                            </div>
+                                            <h3 class="article-title">${article.title}</h3>
+                                            <p class="article-excerpt">${article.excerpt || ''}</p>
+                                        </div>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </section>
+                `;
+                
+                document.getElementById('articles-root').innerHTML = articlesHTML;
+                
+            } catch (error) {
+                console.error('خطا در بارگذاری مقالات:', error);
+                document.getElementById('articles-root').innerHTML = '<p style="color: #888; text-align: center; padding: 4rem;">خطا در بارگذاری مقالات</p>';
+            }
+        }
+        
         // Mount components
         async function initPage() {
             const headerComponent = new HeaderComponent();
             headerComponent.mount('#header-root');
             
-            const articlesComponent = new ArticlesListComponent({
-                useJsonConfig: true,
-                maxArticles: 50
-            });
-            await articlesComponent.mount('#articles-root');
+            await loadAllArticles();
             
             const footerComponent = new FooterComponent();
             footerComponent.mount('#footer-root');

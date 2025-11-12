@@ -140,75 +140,107 @@ class ArticlesListComponent {
     }
 
     render() {
+        if (this.articles.length === 0) {
+            return '';
+        }
+        
+        const featuredArticle = this.articles[0];
+        const sidebarArticles = this.articles.slice(1, 6);
+        
         return `
-            <section class="articles-section">
+            <section class="featured-articles-section">
                 <div class="container">
-                    <div class="articles-grid">
-                        ${this.renderArticles()}
+                    <div class="featured-articles-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
+                            <path d="M7 7h10"></path>
+                            <path d="M7 12h10"></path>
+                            <path d="M7 17h6"></path>
+                        </svg>
+                        <h2>یادداشت‌های پیشنهادی</h2>
+                    </div>
+                    <div class="featured-articles-grid">
+                        ${this.renderFeaturedCard(featuredArticle)}
+                        ${this.renderSidebarArticles(sidebarArticles)}
                     </div>
                 </div>
             </section>
         `;
     }
 
-    renderArticles() {
-        if (this.articles.length === 0) {
-            return `
-                <div class="no-articles">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
-                        <path d="M7 7h10"></path>
-                        <path d="M7 12h10"></path>
-                        <path d="M7 17h6"></path>
-                    </svg>
-                    <p>هیچ مقاله‌ای یافت نشد</p>
-                </div>
-            `;
-        }
-
-        return this.articles.map(article => {
-            // افزودن کلاس خاص برای دسته‌بندی‌های خاص (برای افکت شیشه‌ای)
-            const specialClass = this.getSpecialCategoryClass(article.category);
-            
-            return `
-                <article class="article-card ${specialClass}" data-category="${article.category}">
-                    <a href="${article.link}" class="article-link">
-                        <div class="article-thumbnail-container">
-                            <img src="${article.image}" alt="${article.title}" class="article-thumbnail" loading="lazy">
+    renderFeaturedCard(article) {
+        return `
+            <a href="${article.link}" class="main-featured-card" style="text-decoration: none;">
+                <div class="featured-card-header">
+                    <div class="featured-card-pattern"></div>
+                    <div class="featured-card-icon-container">
+                        <div class="featured-icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 8v8"></path>
+                                <path d="M8 12h8"></path>
+                            </svg>
                         </div>
-                        <div class="article-content">
-                            <span class="article-category-badge">${article.category}</span>
-                            <h3 class="article-title">${article.title}</h3>
-                            <div class="article-meta">
-                                <span class="article-meta-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                    تیم فیلتربین
-                                </span>
-                                <span class="article-meta-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                                    </svg>
-                                    ${article.date}
-                                </span>
-                                <span class="article-meta-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    ${article.readingTime} دقیقه
-                                </span>
+                    </div>
+                    <div class="featured-card-badge">نیمه مهر تا نیمه آبان</div>
+                    <div class="featured-card-year">۱۴۰۴</div>
+                    <div class="featured-badge-container">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="featured-card-content">
+                    <div class="featured-card-meta">
+                        <span>${article.category}</span>
+                        <span>•</span>
+                        <span>${article.date}</span>
+                    </div>
+                    <h3 class="featured-card-title">${article.title}</h3>
+                    <div class="featured-card-action">
+                        <span>ادامه مطلب</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+    
+    renderSidebarArticles(articles) {
+        if (articles.length === 0) {
+            return '';
+        }
+        
+        return `
+            <div class="sidebar-articles-list">
+                ${articles.map(article => `
+                    <a href="${article.link}" class="sidebar-article-card">
+                        <div class="sidebar-article-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
+                                <path d="M7 7h10"></path>
+                                <path d="M7 12h7"></path>
+                            </svg>
+                        </div>
+                        <div class="sidebar-article-content">
+                            <h4 class="sidebar-article-title">${article.title}</h4>
+                            <div class="sidebar-article-meta">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>${article.date}</span>
                             </div>
-                            </div>
+                        </div>
                     </a>
-                </article>
-            `;
-        }).join('');
+                `).join('')}
+            </div>
+        `;
     }
 
     getSpecialCategoryClass(category) {

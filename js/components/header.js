@@ -33,12 +33,14 @@ class HeaderComponent {
     }
 
     render() {
+        const homeUrl = this.basePath + (this.basePath !== '' ? 'index.html' : '');
+        
         return `
             <header class="header">
                 <div class="container">
                     <div class="header-top">
                         <div class="logo">
-                            <a href="${this.basePath}index.html">
+                            <a href="${homeUrl}">
                                 <img src="${this.basePath}assets/logo/logotype.svg" alt="فیلتربین" class="logotype">
                             </a>
                         </div>
@@ -48,7 +50,7 @@ class HeaderComponent {
                             <span class="hamburger-line"></span>
                         </button>
                         <nav class="nav">
-                            <a href="${this.basePath}" class="nav-link">خانه</a>
+                            <a href="${homeUrl}" class="nav-link">خانه</a>
                             <div class="nav-dropdown">
                                 <a href="javascript:void(0);" class="nav-link dropdown-toggle">
                                     ابزارها
@@ -139,7 +141,7 @@ class HeaderComponent {
 
                             <!-- Main Navigation Grid -->
                             <div class="hamburger-main-grid">
-                                <a href="${this.basePath}" class="hamburger-card">
+                                <a href="${homeUrl}" class="hamburger-card">
                                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
