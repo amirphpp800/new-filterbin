@@ -23,6 +23,45 @@ class ArticleComponent {
         }
     }
 
+    renderRelatedArticles() {
+        if (!this.relatedArticles || this.relatedArticles.length === 0) return '';
+        
+        const isSubPage = window.location.pathname.includes('/data/articles/');
+        
+        const articlesHtml = this.relatedArticles.map((article, index) => {
+            const articleFile = article.file || `article-${article.id}.html`;
+            const articlePath = isSubPage ? articleFile : `data/articles/${articleFile}`;
+            const imagePath = isSubPage ? '../../assets/images/' : 'assets/images/';
+            
+            // استخراج نام تصویر از فایل مقاله
+            let coverImage = 'network.png'; // پیش‌فرض
+            if (article.id === '1') coverImage = 'ai.png';
+            else if (article.id === '2') coverImage = 'war.png';
+            else if (article.id === '3') coverImage = 'sms.png';
+            else if (article.id === '4') coverImage = 'ramzarz/cover.png';
+            else if (article.id === '5') coverImage = 'network.png';
+            
+            return `
+                <a href="${articlePath}" class="related-article-card">
+                    <div class="related-article-number">${index + 1}</div>
+                    <img src="${imagePath}${coverImage}" alt="${article.title}" class="related-article-image">
+                    <div class="related-article-content">
+                        <h4 class="related-article-title">${article.title}</h4>
+                    </div>
+                </a>
+            `;
+        }).join('');
+        
+        return `
+            <div class="related-articles-section">
+                <h3>یادداشت‌های پیشنهادی</h3>
+                <div class="related-articles-grid">
+                    ${articlesHtml}
+                </div>
+            </div>
+        `;
+    }
+
     renderTableOfContents() {
         return `
             <div class="toc-section">
@@ -139,6 +178,8 @@ class ArticleComponent {
         `;
     }
 
+    
+
     render() {
         return `
             <article data-id="${this.data.id}" 
@@ -179,6 +220,8 @@ class ArticleComponent {
                                 </div>
                                 
                                 ${this.renderTags()}
+                                
+                                ${this.renderRelatedArticles()}
                             </div>
                         </div>
                     </main>

@@ -40,14 +40,21 @@
     <script src="../js/components/footer.js"></script>
     <script>
         // Mount components
-        const headerComponent = new HeaderComponent();
-        headerComponent.mount('#header-root');
+        async function initPage() {
+            const headerComponent = new HeaderComponent();
+            headerComponent.mount('#header-root');
+            
+            const articlesComponent = new ArticlesListComponent({
+                useJsonConfig: true,
+                maxArticles: 50
+            });
+            await articlesComponent.mount('#articles-root');
+            
+            const footerComponent = new FooterComponent();
+            footerComponent.mount('#footer-root');
+        }
         
-        const articlesComponent = new ArticlesListComponent();
-        articlesComponent.mount('#articles-root');
-        
-        const footerComponent = new FooterComponent();
-        footerComponent.mount('#footer-root');
+        initPage();
     </script>
 </body>
 </html>

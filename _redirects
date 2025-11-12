@@ -1,14 +1,18 @@
+# Netlify redirects file
+# https://docs.netlify.com/routing/redirects/
 
-# Clean URL Redirects
-/about  /pages/about.html  200
-/articles  /pages/articles.html  200
-/bpb-guide  /pages/bpb-guide.html  200
-/iran-off  /pages/iran-off.html  200
-/internet-toolkit  /pages/internet-disruption-toolkit.html  200
-/messaging-toolkit  /pages/messaging-toolkit.html  200
+# Clean URL redirects
+/about              /pages/about.html           200
+/articles           /pages/articles.html        200
+/iran-off           /pages/iran-off.html        200
+/bpb-guide          /pages/bpb-guide.html       200
+/internet-toolkit   /pages/internet-toolkit.html 200
+/source-config      /pages/source-config.html   200
+/messaging-toolkit  /pages/messaging-toolkit.html 200
+/internet-disruption-toolkit /pages/internet-disruption-toolkit.html 200
 
-# Pages directory
-/pages/*  /pages/:splat  200
+# Redirect default Netlify subdomain to primary domain (if needed)
+# https://filterbin.netlify.app/* https://filterbin.space/:splat 301!
 
-# Fallback
-/*  /index.html  200
+# SPA fallback for client-side routing
+/*    /index.html   200

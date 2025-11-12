@@ -54,7 +54,7 @@ class FooterComponent {
             <footer class="footer">
                 <div class="container">
                     <div class="footer-content">
-                        <!-- Column 1: Filterbin -->
+                        <!-- Column 1: Filterbin & Reports (Right) -->
                         <div class="footer-section">
                             <h4 class="footer-title">فیلتربین</h4>
                             <ul class="footer-links">
@@ -62,11 +62,7 @@ class FooterComponent {
                                     <li><a href="${link.url}"${link.tooltip ? ` title="${link.tooltip}"` : ''}>${link.title}</a></li>
                                 `).join('')}
                             </ul>
-                        </div>
-                        
-                        <!-- Column 2: Reports -->
-                        <div class="footer-section">
-                            <h4 class="footer-title">گزارش‌های تحقیقی</h4>
+                            <h4 class="footer-title footer-subtitle">گزارش‌های تحقیقی</h4>
                             <ul class="footer-links">
                                 ${this.footerData.reports.links.map(link => `
                                     <li><a href="${link.url}"${link.tooltip ? ` title="${link.tooltip}"` : ''}>${link.title}</a></li>
@@ -74,7 +70,7 @@ class FooterComponent {
                             </ul>
                         </div>
                         
-                        <!-- Column 3: Wiki -->
+                        <!-- Column 2: Wiki (Center) -->
                         <div class="footer-section">
                             <h4 class="footer-title">ویکی</h4>
                             <ul class="footer-links">
@@ -83,27 +79,20 @@ class FooterComponent {
                                 `).join('')}
                             </ul>
                         </div>
-                    </div>
-                    
-                    <!-- Contact & Social Section -->
-                    <div class="footer-contact-section">
-                        <div class="contact-row">
-                            <div class="contact-item">
-                                <h4 class="social-title">تماس با ما</h4>
-                                <div class="email-simple" onclick="navigator.clipboard.writeText('${this.footerData.contact.email}'); this.querySelector('.copy-feedback').style.opacity='1'; setTimeout(() => this.querySelector('.copy-feedback').style.opacity='0', 2000)">
-                                    <span class="email-text">${this.footerData.contact.email}</span>
-                                    <span class="copy-feedback">✓ کپی شد</span>
-                                </div>
+                        
+                        <!-- Column 3: Social & Contact (Left) -->
+                        <div class="footer-section footer-social-section">
+                            <h4 class="footer-title">ارتباط با ما</h4>
+                            <div class="footer-email">
+                                <a href="mailto:${this.footerData.contact.email}">${this.footerData.contact.email}</a>
                             </div>
-                            <div class="contact-item">
-                                <h4 class="social-title">شبکه‌های اجتماعی</h4>
-                                <div class="social-links">
-                                    ${this.footerData.contact.social.map(social => `
-                                        <a href="${social.url}" class="social-link" aria-label="${social.name}"${social.tooltip ? ` title="${social.tooltip}"` : ''}>
-                                            ${this.getSocialIcon(social.icon)}
-                                        </a>
-                                    `).join('')}
-                                </div>
+                            <h4 class="footer-title footer-subtitle">شبکه‌های اجتماعی</h4>
+                            <div class="social-links">
+                                ${this.footerData.contact.social.map(social => `
+                                    <a href="${social.url}" class="social-link" aria-label="${social.name}"${social.tooltip ? ` title="${social.tooltip}"` : ''}>
+                                        ${this.getSocialIcon(social.icon)}
+                                    </a>
+                                `).join('')}
                             </div>
                         </div>
                     </div>

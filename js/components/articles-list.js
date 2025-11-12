@@ -71,6 +71,10 @@ class ArticlesListComponent {
     async loadFromJSON(articlesData, basePath) {
         // بارگذاری از فایل JSON
         const promises = articlesData.articles.map(articleInfo => {
+            // چک کردن اینکه مقاله active باشد (پیش‌فرض true)
+            if (articleInfo.active === false) {
+                return Promise.resolve(null);
+            }
             const file = `${basePath}data/articles/${articleInfo.file}`;
             return fetch(file)
                 .then(res => {
@@ -200,8 +204,7 @@ class ArticlesListComponent {
                                     ${article.readingTime} دقیقه
                                 </span>
                             </div>
-                            <p class="article-excerpt">${article.excerpt}</p>
-                        </div>
+                            </div>
                     </a>
                 </article>
             `;

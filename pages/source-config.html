@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منابع کانفیگ رایگان - فیلتربین</title>
+    <meta name="description" content="مجموعه کامل لینک‌های اشتراک و ریپازیتوری‌های کانفیگ V2Ray و Xray رایگان برای دور زدن فیلترینگ">
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../assets/Font/fontiran.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/bpb-guide.css">
+    
+    <style>
+        :root {
+            --accent-color: #00FFA3;
+            --accent-hover: #00CC82;
+            --accent-light: rgba(0, 255, 163, 0.1);
+            --accent-border: rgba(0, 255, 163, 0.3);
+        }
+
+        body {
+            background: #000000;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 163, 0.08) 25%, rgba(0, 255, 163, 0.08) 26%, transparent 27%, transparent 74%, rgba(0, 255, 163, 0.08) 75%, rgba(0, 255, 163, 0.08) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 255, 163, 0.08) 25%, rgba(0, 255, 163, 0.08) 26%, transparent 27%, transparent 74%, rgba(0, 255, 163, 0.08) 75%, rgba(0, 255, 163, 0.08) 76%, transparent 77%, transparent);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sources-hero {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--accent-light), rgba(0, 255, 163, 0.2));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 255, 163, 0.3);
+        }
+
+        .hero-icon svg {
+            width: 60px;
+            height: 60px;
+            stroke: var(--accent-color);
+        }
+
+        .sources-hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-color), #00CC82);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .sources-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .warning-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 193, 7, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .warning-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: #ffc107;
+        }
+
+        .warning-content h3 {
+            color: #ffc107;
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .warning-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .sources-section {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .source-card {
+            background: rgba(15, 15, 30, 0.6);
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .source-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .source-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 163, 0.2);
+        }
+
+        .source-card:hover::before {
+            opacity: 1;
+        }
+
+        .source-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-light), rgba(0, 255, 163, 0.2));
+            color: var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .source-card h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            word-break: break-word;
+        }
+
+        .source-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+
+        .source-link:hover {
+            color: var(--accent-hover);
+            gap: 0.75rem;
+        }
+
+        .source-link svg {
+            flex-shrink: 0;
+        }
+
+        .stats-section {
+            background: var(--accent-light);
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-color), #00CC82);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .sources-hero h1 {
+                font-size: 2rem;
+            }
+
+            .sources-hero p {
+                font-size: 1rem;
+            }
+
+            .sources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .warning-box {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section class="sources-hero">
+            <div class="container">
+                <div class="hero-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </div>
+                <h1>منابع کانفیگ رایگان</h1>
+                <p>مجموعه کامل ریپازیتوری‌ها و لینک‌های اشتراک V2Ray/Xray برای دسترسی آزاد به اینترنت</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="warning-box">
+                <div class="warning-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </div>
+                <div class="warning-content">
+                    <h3>⚠️ هشدار امنیتی</h3>
+                    <p>استفاده از کانفیگ‌های رایگان ممکن است خطرات امنیتی داشته باشد. توصیه می‌شود برای استفاده‌های حساس از سرویس‌های معتبر و پولی استفاده کنید. این منابع صرفاً جهت آزمایش و آشنایی با فناوری‌های دور زدن فیلترینگ ارائه شده‌اند.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="stats-section">
+                <h2>آمار منابع</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">ریپازیتوری فعال</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">کانفیگ روزانه</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">به‌روزرسانی</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="sources-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>📦 لیست کامل منابع</h2>
+                    <p>ریپازیتوری‌های گیت‌هاب و منابع معتبر کانفیگ</p>
+                </div>
+
+                <div class="sources-grid">
+                    <div class="source-card">
+                        <span class="source-number">#1</span>
+                        <h3>barry-far/V2ray-Config</h3>
+                        <a href="https://github.com/barry-far/V2ray-Config" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#2</span>
+                        <h3>Epodonios/v2ray-configs</h3>
+                        <a href="https://github.com/Epodonios/v2ray-configs" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#3</span>
+                        <h3>AvenCores/goida-vpn-configs</h3>
+                        <a href="https://github.com/AvenCores/goida-vpn-configs" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#4</span>
+                        <h3>aqayerez/MatnOfficial-VPN</h3>
+                        <a href="https://github.com/aqayerez/MatnOfficial-VPN" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#5</span>
+                        <h3>STR97/STRUGOV</h3>
+                        <a href="https://github.com/STR97/STRUGOV" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#6</span>
+                        <h3>NiREvil/vless</h3>
+                        <a href="https://github.com/NiREvil/vless" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#7</span>
+                        <h3>itsyebekhe/PSG</h3>
+                        <a href="https://github.com/itsyebekhe/PSG/tree/main/subscriptions/xray" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#8</span>
+                        <h3>MatinGhanbari/v2ray-configs</h3>
+                        <a href="https://github.com/MatinGhanbari/v2ray-configs" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#9</span>
+                        <h3>SoliSpirit/v2ray-configs</h3>
+                        <a href="https://github.com/SoliSpirit/v2ray-configs" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#10</span>
+                        <h3>V2RayRoot/V2RayConfig</h3>
+                        <a href="https://github.com/V2RayRoot/V2RayConfig" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#11</span>
+                        <h3>hamedcode/port-based-v2ray-configs</h3>
+                        <a href="https://github.com/hamedcode/port-based-v2ray-configs" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="source-card">
+                        <span class="source-number">#12</span>
+                        <h3>lagzian/SS-Collector</h3>
+                        <a href="https://github.com/lagzian/SS-Collector" target="_blank" rel="noopener noreferrer" class="source-link">
+                            مشاهده ریپازیتوری
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script>
+        const header = new HeaderComponent();
+        header.mount('#header');
+        
+        const footer = new FooterComponent();
+        footer.mount('#footer');
+    </script>
+</body>
+</html>
