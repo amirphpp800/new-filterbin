@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>یادداشت‌ها - فیلتربین</title>
     <meta name="description" content="یادداشت‌ها و مقالات تخصصی فیلتربین در حوزه امنیت دیجیتال، فناوری و اینترنت آزاد">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../assets/logo/logo.svg">
-    
+
     <!-- Fonts -->
     <link rel="stylesheet" href="../assets/Font/fontiran.css">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
@@ -35,70 +34,28 @@
 
     <!-- Footer Component -->
     <div id="footer-root"></div>
-    
+
     <!-- Component Scripts -->
     <script src="../js/components/header.js"></script>
     <script src="../js/components/footer.js"></script>
+    <script src="../js/components/articles-featured.js"></script>
     <script>
-        // بارگذاری و نمایش تمام مقالات
-        async function loadAllArticles() {
-            try {
-                const response = await fetch('../data/articles/articles.json');
-                if (!response.ok) {
-                    throw new Error('Failed to load articles');
-                }
-                const data = await response.json();
-                const articles = data.articles || [];
-                
-                console.log(`✅ تعداد ${articles.length} مقاله از JSON بارگذاری شد`);
-                
-                if (articles.length === 0) {
-                    document.getElementById('articles-root').innerHTML = '<p style="color: #888; text-align: center; padding: 4rem;">هیچ مقاله‌ای یافت نشد</p>';
-                    return;
-                }
-                
-                // نمایش تمام مقالات در قالب grid
-                const articlesHTML = `
-                    <section class="articles-list-section">
-                        <div class="container">
-                            <div class="articles-grid">
-                                ${articles.map(article => `
-                                    <a href="../data/articles/${article.file}" class="article-card">
-                                        <div class="article-content">
-                                            <div class="article-meta">
-                                                <span class="article-category">${article.category}</span>
-                                                <span>•</span>
-                                                <span class="article-date">${article.date || 'تاریخ نامشخص'}</span>
-                                            </div>
-                                            <h3 class="article-title">${article.title}</h3>
-                                            <p class="article-excerpt">${article.excerpt || ''}</p>
-                                        </div>
-                                    </a>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </section>
-                `;
-                
-                document.getElementById('articles-root').innerHTML = articlesHTML;
-                
-            } catch (error) {
-                console.error('خطا در بارگذاری مقالات:', error);
-                document.getElementById('articles-root').innerHTML = '<p style="color: #888; text-align: center; padding: 4rem;">خطا در بارگذاری مقالات</p>';
-            }
-        }
-        
         // Mount components
         async function initPage() {
             const headerComponent = new HeaderComponent();
             headerComponent.mount('#header-root');
-            
-            await loadAllArticles();
-            
+
+            // استفاده از کامپوننت featured برای نمایش تمام مقالات
+            const articlesComponent = new ArticlesFeaturedComponent({
+                basePath: '../',
+                showFeatured: false // غیرفعال کردن نمایش کارت ویژه
+            });
+            await articlesComponent.mount('#articles-root');
+
             const footerComponent = new FooterComponent();
             footerComponent.mount('#footer-root');
         }
-        
+
         initPage();
     </script>
 </body>

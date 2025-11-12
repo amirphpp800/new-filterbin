@@ -644,6 +644,40 @@
     transform: scale(1.02);
 }
 
+/* Header Banners Responsive */
+@media (max-width: 768px) {
+    .header-banners {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        padding: 0.75rem 0 1rem;
+    }
+
+    .header-banner-card {
+        border-radius: 12px;
+        max-height: 140px;
+    }
+
+    .header-banner-card img {
+        max-height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-banners {
+        padding: 0.5rem 0 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .header-banner-card {
+        border-radius: 10px;
+        max-height: 120px;
+    }
+
+    .header-banner-card img {
+        max-height: 120px;
+    }
+}
+
 /* ==================== HERO COMPONENT ==================== */
 .hero-section {
     padding: 3rem 0 0 0;
@@ -669,6 +703,95 @@
     margin-top: 3rem;
 }
 
+/* Articles List Section for articles page */
+.articles-list-section {
+    padding: 3rem 0;
+}
+
+.articles-list-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.articles-list-section .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.articles-list-section .article-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.articles-list-section .article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    border-color: rgba(224, 47, 58, 0.4);
+}
+
+.articles-list-section .article-card-link {
+    text-decoration: none;
+    display: block;
+}
+
+.articles-list-section .article-thumbnail {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.articles-list-section .article-content {
+    padding: 1.5rem;
+}
+
+.articles-list-section .article-meta {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.articles-list-section .article-category {
+    background: rgba(224, 47, 58, 0.15);
+    color: #E02F3A;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(224, 47, 58, 0.3);
+}
+
+.articles-list-section .article-date {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+}
+
+.articles-list-section .article-title {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.articles-list-section .article-excerpt {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .article-card {
     background: #0a0a0a;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -689,7 +812,6 @@
 }
 
 .article-card:hover {
-    transform: translateY(-8px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
     border-color: rgba(224, 47, 58, 0.4);
 }
@@ -778,7 +900,7 @@
 }
 
 .article-card:hover .article-title {
-    color: #E02F3A;
+    color: var(--primary-color);
 }
 
 /* Article Meta Information */
@@ -1229,8 +1351,8 @@
 /* Article Card - New Modern Design */
 .article-card {
     background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -1240,9 +1362,8 @@
 }
 
 .article-card:hover {
-    transform: translateY(-8px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
-    border-color: rgba(224, 47, 58, 0.3);
+    border-color: rgba(224, 47, 58, 0.4);
 }
 
 .article-card .article-link {
@@ -1324,7 +1445,7 @@
 }
 
 .article-card:hover .article-title {
-    color: #E02F3A;
+    color: var(--primary-color);
 }
 
 /* Article Meta - Clean Style */
@@ -1532,12 +1653,6 @@
         grid-template-columns: 1fr;
         gap: 0.8rem;
     }
-
-    .header-banners {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-        padding: 1rem 0;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1554,17 +1669,7 @@
         display: none;
     }
 
-    .header-banners {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        padding: 0.75rem 0;
-    }
 
-    .header-banner-card {
-        border-radius: 8px;
-    }
-
-    
 
     .section-title {
         font-size: 2rem;
@@ -1627,19 +1732,17 @@
 }
 
 @media (max-width: 480px) {
-    .header-banners {
-        padding: 1rem 0;
-    }
-
-    
-
     .article-thumbnail-container {
-        height: 200px;
+        height: 220px;
     }
 
     .article-category-badge {
         font-size: 0.75rem;
-        padding: 0.1rem 0.2rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     /* Hamburger Menu Mobile Styles */

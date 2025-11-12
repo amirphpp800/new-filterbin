@@ -33,7 +33,7 @@ class HeaderComponent {
     }
 
     render() {
-        const homeUrl = this.basePath + (this.basePath !== '' ? 'index.html' : '');
+        const homeUrl = this.basePath === '' ? '/' : this.basePath + 'index.html';
         
         return `
             <header class="header">
