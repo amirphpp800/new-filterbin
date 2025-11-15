@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -45,10 +46,11 @@
             const headerComponent = new HeaderComponent();
             headerComponent.mount('#header-root');
 
-            // استفاده از کامپوننت featured برای نمایش تمام مقالات
+            // نمایش تمام مقالات به صورت گرید
             const articlesComponent = new ArticlesFeaturedComponent({
                 basePath: '../',
-                showFeatured: false // غیرفعال کردن نمایش کارت ویژه
+                showFeatured: false,
+                useJsonConfig: true
             });
             await articlesComponent.mount('#articles-root');
 

@@ -51,13 +51,20 @@
     display: inline-block;
     background: rgba(224, 47, 58, 0.15);
     color: #E02F3A;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 700;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    letter-spacing: 0;
+    line-height: 1;
     border: 1px solid rgba(224, 47, 58, 0.3);
-    margin-bottom: 0.5rem;
-    align-self: flex-start;
+}
+
+.article-card:hover .article-category-badge {
+    background: rgba(224, 47, 58, 0.2);
 }
 
 .article-title {
@@ -882,7 +889,7 @@
 }
 
 .article-card:hover .article-category-badge {
-    background: rgba(224, 47, 58, 0.25);
+    background: rgba(224, 47, 58, 0.15);
 }
 
 .article-title {
@@ -1416,16 +1423,18 @@
 /* Article Category Badge - Minimal Style */
 .article-category-badge {
     display: inline-block;
-    background: transparent;
+    background: rgba(224, 47, 58, 0.15);
     color: var(--primary-color);
-    padding: 0;
-    border-radius: 0;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
     letter-spacing: 0;
-    border: none;
+    border: 1px solid rgba(224, 47, 58, 0.3);
     font-family: 'IRANSansDN', 'IRANSans', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: none;
 }
 
 /* Article Title - Larger and Bold */

@@ -14,7 +14,10 @@ class App {
         // Initialize components
         this.components.header = new HeaderComponent();
         this.components.hero = new HeroComponent();
-        this.components.articlesFeatured = new ArticlesFeaturedComponent();
+        this.components.articlesFeatured = new ArticlesFeaturedComponent({
+            showFeatured: true,
+            useJsonConfig: true
+        });
         this.components.footer = new FooterComponent();
 
         // Mount components

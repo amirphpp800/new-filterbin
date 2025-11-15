@@ -124,6 +124,131 @@ class ArticlesFeaturedComponent {
     render() {
         if (this.articles.length === 0) {
             return `
+                <section class="featured-articles-card">
+                    <div class="container">
+                        <div class="no-articles">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
+                                <path d="M7 7h10"></path>
+                                <path d="M7 12h10"></path>
+                                <path d="M7 17h6"></path>
+                            </svg>
+                            <p>در حال حاضر مقاله‌ای موجود نیست</p>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        const latestArticle = this.articles[0];
+        const olderArticles = this.articles.slice(1, 5);
+
+        return `
+            <section class="featured-articles-card">
+                <div class="container">
+                    <div class="featured-articles-container">
+                        ${this.renderMainFeatured(latestArticle)}
+                        ${this.renderSideArticles(olderArticles)}
+                    </div>
+                </div>
+            </section>
+        `;
+    }
+
+    renderMainFeatured(article) {
+        return `
+            <a href="${article.link}" class="main-featured">
+                <div class="featured-header">
+                    <div class="pattern-overlay"></div>
+                    <div class="featured-icon-wrapper">
+                        <div class="icon-circle">
+                            <svg class="featured-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <div class="featured-badge">
+                            <span class="badge-text">آخرین یادداشت</span>
+                            <span class="badge-number">#${article.id}</span>
+                        </div>
+                    </div>
+                    <div class="red-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="featured-category">${article.category}</span>
+                        <span class="featured-date">${article.date}</span>
+                    </div>
+                    <h2 class="featured-title">${article.title}</h2>
+                    <div class="featured-link">
+                        <span>ادامه مطلب</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+
+    renderSideArticles(articles) {
+        if (articles.length === 0) {
+            return '';
+        }
+
+        return `
+            <div class="side-articles">
+                <div class="side-articles-header">
+                    <h3>یادداشت‌های پیشین</h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
+                        <path d="M7 7h10"></path>
+                        <path d="M7 12h10"></path>
+                        <path d="M7 17h6"></path>
+                    </svg>
+                </div>
+                <div class="side-articles-list">
+                    ${articles.map(article => this.renderSideArticle(article)).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    renderSideArticle(article) {
+        return `
+            <a href="${article.link}" class="side-article-item">
+                <img src="${article.image}" alt="${article.title}" class="side-article-thumbnail">
+                <div class="side-article-content">
+                    <h4 class="side-article-title">${article.title}</h4>
+                    <div class="side-article-meta">
+                        <span class="side-article-date">${article.date}</span>
+                    </div>
+                </div>
+            </a>
+        `;
+    }
+
+    async mount(selector) {
+        await this.loadArticles();
+        const element = document.querySelector(selector);
+        if (element) {
+            if (this.showFeatured) {
+                element.innerHTML = this.render();
+            } else {
+                element.innerHTML = this.renderArticlesGrid();
+            }
+            this.attachEvents();
+        }
+    }
+
+    renderArticlesGrid() {
+        if (this.articles.length === 0) {
+            return `
                 <section class="articles-list-section">
                     <div class="container">
                         <div class="no-articles">
@@ -183,17 +308,8 @@ class ArticlesFeaturedComponent {
         `;
     }
 
-    async mount(selector) {
-        await this.loadArticles();
-        const element = document.querySelector(selector);
-        if (element) {
-            element.innerHTML = this.render();
-            this.attachEvents();
-        }
-    }
-
     attachEvents() {
-        const articleCards = document.querySelectorAll('.article-card');
+        const articleCards = document.querySelectorAll('.main-featured, .side-article-item');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
