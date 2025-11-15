@@ -46,10 +46,10 @@
             const headerComponent = new HeaderComponent();
             headerComponent.mount('#header-root');
 
-            // نمایش تمام مقالات به صورت گرید
+            // نمایش مقالات با فرمت دو کارت بزرگ
             const articlesComponent = new ArticlesFeaturedComponent({
                 basePath: '../',
-                showFeatured: false,
+                showFeatured: true,
                 useJsonConfig: true
             });
             await articlesComponent.mount('#articles-root');

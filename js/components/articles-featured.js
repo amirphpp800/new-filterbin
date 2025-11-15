@@ -1,4 +1,5 @@
 
+
 // Articles Featured Component - Enhanced with Auto-Discovery
 class ArticlesFeaturedComponent {
     constructor(options = {}) {
@@ -147,8 +148,8 @@ class ArticlesFeaturedComponent {
             <section class="featured-articles-card">
                 <div class="container">
                     <div class="featured-articles-container">
-                        ${this.renderMainFeatured(latestArticle)}
                         ${this.renderSideArticles(olderArticles)}
+                        ${this.renderMainFeatured(latestArticle)}
                     </div>
                 </div>
             </section>
@@ -159,24 +160,11 @@ class ArticlesFeaturedComponent {
         return `
             <a href="${article.link}" class="main-featured">
                 <div class="featured-header">
-                    <div class="pattern-overlay"></div>
-                    <div class="featured-icon-wrapper">
-                        <div class="icon-circle">
-                            <svg class="featured-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
-                        </div>
-                        <div class="featured-badge">
-                            <span class="badge-text">آخرین یادداشت</span>
-                            <span class="badge-number">#${article.id}</span>
-                        </div>
-                    </div>
-                    <div class="red-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="4" fill="#fff"></circle>
-                        </svg>
+                    <img src="${article.image}" alt="${article.title}">
+                    <div class="featured-overlay"></div>
+                    <div class="featured-badge">
+                        <span class="badge-text">جدیدترین یادداشت</span>
+                        <span class="badge-number">#${article.id}</span>
                     </div>
                 </div>
                 <div class="featured-content">
@@ -186,7 +174,7 @@ class ArticlesFeaturedComponent {
                     </div>
                     <h2 class="featured-title">${article.title}</h2>
                     <div class="featured-link">
-                        <span>ادامه مطلب</span>
+                        <span>مطالعه مقاله</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M15 18l-6-6 6-6"/>
                         </svg>
