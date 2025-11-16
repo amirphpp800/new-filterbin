@@ -1,11 +1,8 @@
+
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
-Disallow: /*.json$
+Disallow: /config/
+Disallow: /js/
+Disallow: /css/
 
-# Sitemap
-Sitemap: https://filterbin.space/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
+Sitemap: https://filterbin.replit.app/sitemap.xml

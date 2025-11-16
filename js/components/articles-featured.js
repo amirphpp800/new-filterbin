@@ -8,6 +8,8 @@ class ArticlesFeaturedComponent {
         this.useJsonConfig = options.useJsonConfig !== false;
         this.basePath = options.basePath || '';
         this.showFeatured = options.showFeatured !== false;
+        this.parseCache = new Map();
+        this.loadingPromise = null;
     }
 
     async loadArticles() {
@@ -19,8 +21,10 @@ class ArticlesFeaturedComponent {
                     const jsonResponse = await fetch(jsonPath);
                     if (jsonResponse.ok) {
                         const articlesData = await jsonResponse.json();
-                        await this.loadFromJSON(articlesData);
-                        return;
+                        if (articlesData && articlesData.articles && articlesData.articles.length > 0) {
+                            await this.loadFromJSON(articlesData);
+                            return;
+                        }
                     }
                 } catch (err) {
                     console.log('JSON config not found, using auto-discovery...');
@@ -28,6 +32,10 @@ class ArticlesFeaturedComponent {
             }
             
             await this.autoDiscoverArticles();
+            
+            if (this.articles.length === 0) {
+                console.warn('No articles found in auto-discovery mode');
+            }
             
         } catch (error) {
             console.error('Error loading articles:', error);
@@ -87,39 +95,52 @@ class ArticlesFeaturedComponent {
     }
 
     parseArticleFromHTML(html, filePath) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const article = doc.querySelector('article');
-        
-        if (!article) return null;
-        
-        const id = article.getAttribute('data-id');
-        const category = article.getAttribute('data-category');
-        const date = article.getAttribute('data-date');
-        const excerpt = article.getAttribute('data-excerpt');
-        const readingTime = article.getAttribute('data-reading-time');
-        
-        const titleElement = article.querySelector('.article-main-title');
-        const imageElement = article.querySelector('.article-cover-image');
-        
-        let imageSrc = imageElement ? imageElement.getAttribute('src') : '/assets/images/default.png';
-        if (imageSrc.startsWith('/')) {
-            imageSrc = this.basePath.replace(/\/$/, '') + imageSrc;
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const article = doc.querySelector('article');
+            
+            if (!article) {
+                console.warn(`No article element found in ${filePath}`);
+                return null;
+            }
+            
+            const id = article.getAttribute('data-id');
+            const category = article.getAttribute('data-category');
+            const date = article.getAttribute('data-date');
+            const excerpt = article.getAttribute('data-excerpt');
+            const readingTime = article.getAttribute('data-reading-time');
+            
+            const titleElement = article.querySelector('.article-main-title');
+            const imageElement = article.querySelector('.article-cover-image');
+            
+            if (!titleElement) {
+                console.warn(`No title found in ${filePath}`);
+                return null;
+            }
+            
+            let imageSrc = imageElement ? imageElement.getAttribute('src') : '/assets/images/default.png';
+            if (imageSrc && imageSrc.startsWith('/')) {
+                imageSrc = this.basePath.replace(/\/$/, '') + imageSrc;
+            }
+            
+            const fileName = filePath.split('/').pop();
+            const articleLink = `${this.basePath}data/articles/${fileName}`;
+            
+            return {
+                id: id || filePath.match(/article-(\d+)/)?.[1] || '1',
+                title: titleElement.textContent.trim(),
+                excerpt: excerpt || 'خلاصه‌ای موجود نیست',
+                image: imageSrc,
+                date: date || 'تاریخ نامشخص',
+                category: category || 'عمومی',
+                readingTime: readingTime || '5',
+                link: articleLink
+            };
+        } catch (error) {
+            console.error(`Error parsing article from ${filePath}:`, error);
+            return null;
         }
-        
-        const fileName = filePath.split('/').pop();
-        const articleLink = `${this.basePath}data/articles/${fileName}`;
-        
-        return {
-            id: id || filePath.match(/article-(\d+)/)?.[1] || '1',
-            title: titleElement ? titleElement.textContent.trim() : 'بدون عنوان',
-            excerpt: excerpt || 'خلاصه‌ای موجود نیست',
-            image: imageSrc,
-            date: date || 'تاریخ نامشخص',
-            category: category || 'عمومی',
-            readingTime: readingTime || '5',
-            link: articleLink
-        };
     }
 
     render() {
@@ -222,7 +243,11 @@ class ArticlesFeaturedComponent {
     }
 
     async mount(selector) {
-        await this.loadArticles();
+        if (!this.loadingPromise) {
+            this.loadingPromise = this.loadArticles();
+        }
+        await this.loadingPromise;
+        
         const element = document.querySelector(selector);
         if (element) {
             if (this.showFeatured) {
@@ -253,11 +278,13 @@ class ArticlesFeaturedComponent {
             `;
         }
 
+        const articlesHTML = this.articles.map(article => this.renderArticleCard(article)).join('');
+        
         return `
             <section class="articles-list-section">
                 <div class="container">
                     <div class="articles-grid">
-                        ${this.articles.map(article => this.renderArticleCard(article)).join('')}
+                        ${articlesHTML}
                     </div>
                 </div>
             </section>
@@ -266,16 +293,16 @@ class ArticlesFeaturedComponent {
 
     renderArticleCard(article) {
         return `
-            <a href="${article.link}" class="article-card">
+            <a href="${article.link}" class="article-card" aria-label="مطالعه مقاله: ${article.title}">
                 <div class="article-thumbnail-container">
-                    <img src="${article.image}" alt="${article.title}" class="article-thumbnail">
+                    <img src="${article.image}" alt="تصویر شاخص: ${article.title}" class="article-thumbnail" loading="lazy">
                 </div>
                 <div class="article-content">
-                    <span class="article-category-badge">${article.category}</span>
+                    <span class="article-category-badge" aria-label="دسته‌بندی">${article.category}</span>
                     <h3 class="article-title">${article.title}</h3>
-                    <div class="article-meta">
+                    <div class="article-meta" aria-label="اطلاعات مقاله">
                         <div class="article-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -284,11 +311,11 @@ class ArticlesFeaturedComponent {
                             <span>${article.date}</span>
                         </div>
                         <div class="article-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            <span>${article.readingTime} دقیقه</span>
+                            <span>${article.readingTime} دقیقه مطالعه</span>
                         </div>
                     </div>
                 </div>
@@ -297,14 +324,21 @@ class ArticlesFeaturedComponent {
     }
 
     attachEvents() {
-        const articleCards = document.querySelectorAll('.main-featured, .side-article-item');
+        const articleCards = document.querySelectorAll('.main-featured, .side-article-item, .article-card');
+        
+        if (!articleCards.length) return;
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
 
         articleCards.forEach(card => observer.observe(card));
     }

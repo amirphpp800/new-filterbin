@@ -7,6 +7,10 @@
     <title>یادداشت‌ها - فیلتربین</title>
     <meta name="description" content="یادداشت‌ها و مقالات تخصصی فیلتربین در حوزه امنیت دیجیتال، فناوری و اینترنت آزاد">
 
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="../assets" crossorigin>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../assets/logo/logo.svg">
 
@@ -46,10 +50,10 @@
             const headerComponent = new HeaderComponent();
             headerComponent.mount('#header-root');
 
-            // نمایش مقالات با فرمت دو کارت بزرگ
+            // نمایش مقالات با فرمت گرید تک کارت
             const articlesComponent = new ArticlesFeaturedComponent({
                 basePath: '../',
-                showFeatured: true,
+                showFeatured: false,
                 useJsonConfig: true
             });
             await articlesComponent.mount('#articles-root');
