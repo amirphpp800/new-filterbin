@@ -213,7 +213,7 @@ class ArticlesFeaturedComponent {
         return `
             <div class="side-articles">
                 <div class="side-articles-header">
-                    <h3>یادداشت‌های پیشین</h3>
+                    <h3>یادداشت‌های بیشتر...</h3>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path>
                         <path d="M7 7h10"></path>

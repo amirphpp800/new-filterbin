@@ -263,9 +263,14 @@ class HeaderComponent {
 
         if (hamburgerBtn && overlay) {
             hamburgerBtn.addEventListener('click', () => {
-                hamburgerBtn.classList.toggle('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                // اگر منو باز است، آن را ببند
+                if (overlay.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    hamburgerBtn.classList.add('active');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
             });
 
             overlay.addEventListener('click', (e) => {
